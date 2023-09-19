@@ -1,11 +1,18 @@
 {
   "name": "algorithms",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {},
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc",
+    "start": "node dist/execute.js"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "typescript": "^5.2.2"
+  },
+  "description": "",
+  "devDependencies": {
+    "rimraf": "^5.0.1"
   }
 }
