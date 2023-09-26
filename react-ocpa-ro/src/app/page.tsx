@@ -1,90 +1,39 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import GoToMeteo from './meteo'
-import GoToProtonePlayer from './protone-player'
-import GoToElectronicsBlog from './electronics-blog'
-import GoToPhotoAlbum from './photo-album'
+'use client';
 
-export default function Home() {
+import styles from './page.module.css';
+import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from 'react-router-dom';
+import HomeComponent from './home';
+import ProtonPlayerComponent from './protone-player-component';
+import MeteoComponent from './meteo-component';
+import ElectronicsBlogComponent from './electronics-blog-component';
+import PhotoAlbumComponent from './photo-album-component';
+
+
+export default function App() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p> Welcome! Please choose one of the categories below, or use the right-top menu. </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' MYSELF'}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <GoToMeteo></GoToMeteo>
-      <GoToProtonePlayer></GoToProtonePlayer>
-      <GoToElectronicsBlog></GoToElectronicsBlog>
-      <GoToPhotoAlbum></GoToPhotoAlbum>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <div className="App">
+      <BrowserRouter>
+        <header>
+          <nav>
+            <ul className={styles.menu}>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/player">ProTONE Player</Link></li>
+              <li><Link to="/meteo">Weather Forecast</Link></li>
+              <li><Link to="/blog">Electronics Blog</Link></li>
+              <li><Link to="/album">Photo Album</Link></li>
+            </ul>
+          </nav>
+        </header>
+        <main className={styles.main}>
+          <Routes>
+            <Route path="/" Component={HomeComponent} />
+            <Route path="/player" Component={ProtonPlayerComponent} />
+            <Route path="/meteo" Component={MeteoComponent} />
+            <Route path="/blog" Component={ElectronicsBlogComponent} />
+            <Route path="/album" Component={PhotoAlbumComponent} />  
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </div>
   )
 }
