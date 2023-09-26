@@ -1,24 +1,21 @@
+'use client';
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faSailboat, faCoffee, faHatHard, faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
-// import { fa } from '@fortawesome/free-regular-svg-icons';
-// import { faWea } from '@fortawesome/free-brands-svg-icons';
+import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
 
-const element = <FontAwesomeIcon icon={faEnvelope} />
+const GoToMeteo = () => {
 
-function MeteoComponent() {
+    const goToWeather = () => {
+        console.log('GoToMeteo');
+    };
+    
     return (
-        <div className="c1">
-            <a href="/meteo">
-                <div className="home-image">
-                    <div style={{ fontWeight: "bold", transform:"down-60" }}>
-                        Weather Forecast
-                    </div>
-                </div>
-            </a>
-            <FontAwesomeIcon icon={faCloudSunRain} title="Weather Forecast" />
-        </div>
+        <button className="btn btn-primary" onClick={goToWeather}>
+            <FontAwesomeIcon icon={faCloudSunRain} />
+            Weather Forecast
+        </button>
     );
-}
+};
 
-export default MeteoComponent;
+export default GoToMeteo;

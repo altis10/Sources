@@ -1,15 +1,15 @@
 import Image from 'next/image'
 import styles from './page.module.css'
-import MeteoComponent from './meteo'
+import GoToMeteo from './meteo'
+import GoToProtonePlayer from './protone-player'
+import GoToElectronicsBlog from './electronics-blog'
+import GoToPhotoAlbum from './photo-album'
 
 export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
+        <p> Welcome! Please choose one of the categories below, or use the right-top menu. </p>
         <div>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -29,7 +29,11 @@ export default function Home() {
         </div>
       </div>
 
-      <MeteoComponent></MeteoComponent>
+      <GoToMeteo></GoToMeteo>
+      <GoToProtonePlayer></GoToProtonePlayer>
+      <GoToElectronicsBlog></GoToElectronicsBlog>
+      <GoToPhotoAlbum></GoToPhotoAlbum>
+
       <div className={styles.grid}>
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
