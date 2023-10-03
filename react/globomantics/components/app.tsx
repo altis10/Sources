@@ -4,12 +4,10 @@ import HouseList from "./houseList";
 const App = () => {
     return (
         <>
-            <Banner>
-                <div>Providing houses for all over the world</div>
-            </Banner>
-            <HouseList />
+        <Banner headerText="Providing houses all over the world!"/>
+        <HouseList />
         </>
-    ); 
-}
+    );
+};
 
 export default App;
