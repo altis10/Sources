@@ -11,7 +11,7 @@ const ProtonePlayerBtn = () => {
     return (
         <Link to="/player" className={styles.macroButton}>
             <FontAwesomeIcon icon={faPlay} color='blue' size='5x' textAnchor='New' border title='ProTONE Player' />
-            <a>ProTONE Player</a>
+            ProTONE Player
         </Link>
     );
 };
