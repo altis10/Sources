@@ -5,7 +5,7 @@ import GeoAPIAddress from "../models/geoApiAddresses";
 import GetCities from "./getCities";
 import useGetRequest from "../hooks/useGetRequest";
 
-const GetSubRegions = ({region}) => {
+const GetSubRegions = ({ meteoDataChanged, region }) => {
     const subRegions = useRef(['']);
     const [selectedSubRegion, setSelectedSubRegion] = useState('');
     const {get, loadingState} = useGetRequest(`${environment.apiUrl}${GeoAPIAddress(region, '', '').subregions}`);
@@ -35,7 +35,7 @@ const GetSubRegions = ({region}) => {
                 ))}
             </select>
             <p>Selected subRegion: {selectedSubRegion}</p>
-            <GetCities region={region} subregion={selectedSubRegion}></GetCities>
+            <GetCities meteoDataChanged={meteoDataChanged} region={region} subregion={selectedSubRegion}></GetCities>
         </>
     );
 };

@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import useGetRegions from "../hooks/useGetRegions";
 import environment from "../environments/environment";
 import GeoAPIAddress from "../models/geoApiAddresses";
 import GetSubRegions from "./getSubRegions";
 import useGetRequest from "../hooks/useGetRequest";
 
-const GetRegions = () => {
+const GetRegions = ({ meteoDataChanged }) => {
     const regions = useRef(['']);
     const [selectedRegion, setSelectedRegion] = useState('');
     const {get, loadingState} = useGetRequest(`${environment.apiUrl}${GeoAPIAddress('', '', '').regions}`);
@@ -22,7 +21,7 @@ const GetRegions = () => {
     };
 
     return (
-        <div className="row">
+        <>
             <label className="label-region">Region:</label>
             <select value={selectedRegion} onChange={onRegionChanged} className="select-region">
                 <option value="">Select</option>
@@ -33,8 +32,8 @@ const GetRegions = () => {
                 ))}
             </select>
             <p>Selected region: {selectedRegion}</p>
-            <GetSubRegions region={selectedRegion}></GetSubRegions>
-        </div>
+            <GetSubRegions meteoDataChanged={meteoDataChanged} region={selectedRegion}></GetSubRegions>
+        </>
     );
 };
 

@@ -25,6 +25,18 @@
   gap: 0.5rem;
 }
 
+.meteodata {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dailymeteodata {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #0056b3;
+  padding: 4px;
+}
+
 .description p {
   position: relative;
   margin: 0;
