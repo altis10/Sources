@@ -1,27 +1,26 @@
-/*////////////////////////
+/////////////////////////
 /// meteo page styles ///
-////////////////////////*/
-@import './variables.css';
+/////////////////////////
 
-.normal { background-color: var(--meteo-normal-color); }
-.warmer { background-color: var(--meteo-warmer-color); }
-.much_warmer { background-color: var(--meteo-much-warmer-color); }
-.hot { background-color: var(--meteo-hot-color); }
-.colder { background-color: var(--meteo-colder-color); }
-.much_colder { background-color: var(--meteo-much-colder-color); }
-.frost { background-color: var(--meteo-frost-color); }
+.normal { background-color: $meteo-normal-color; }
+.warmer { background-color: $meteo-warmer-color; }
+.much_warmer { background-color: $meteo-much-warmer-color; }
+.hot { background-color: $meteo-hot-color; }
+.colder { background-color: $meteo-colder-color; }
+.much_colder { background-color: $meteo-much-colder-color; }
+.frost { background-color: $meteo-frost-color; }
 
 .meteo-td, .meteo-td-no-data {
     text-align: left;
     vertical-align: top;
-    border: 1px solid var(--meteo-table-line-color);
+    border: 1px solid $meteo-table-line-color;
     width: 12vw;
 }
 
 .meteo-td-today {
     text-align: left;
     vertical-align: top;
-    border: 5px solid var(--meteo-today-border-color);
+    border: 5px solid $meteo-today-border-color;
     width: 12vw;
 }
 
@@ -29,6 +28,18 @@
     display: flex;
     flex-direction: row;
     width: 91vw;
+}
+
+.meteodata {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.dailymeteodata {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #0056b3;
+    padding: 4px;
 }
 
 .app-day-summary {
@@ -42,14 +53,14 @@
     "hs ha hn ls la ln ."
     "i i i i i i i"
     ;
-    background-color: var(--backcolor);
+    background-color: $backcolor;
 }   
 
 .day-summary-header-normal {
     grid-area: h;
-    background-color: var(--forecolor);
+    background-color: $forecolor;
     text-transform: uppercase;
-    color: var(--backcolor);
+    color: $backcolor;
     font-weight: normal;
     font-size: 1rem;
     align-self: center;
@@ -59,9 +70,9 @@
 
 .day-summary-header-weekend {
     grid-area: h;
-    background-color: var(--meteo-weekend-header-color);
+    background-color: $meteo-weekend-header-color;
     text-transform: uppercase;
-    color: var(--backcolor);
+    color: $backcolor;
     font-weight: bold;
     font-size: 1rem;
     align-self: center;
@@ -71,7 +82,7 @@
 
 .day-summary-no-data {
     grid-area: e;
-    color: var(--meteo-table-line-color);
+    color: $meteo-table-line-color;
     align-self: center;
 }
 
@@ -106,7 +117,7 @@
 .day-summary-temp-max-actual {
     grid-area: ha;
     padding: 0;
-    color: var(--meteo-temp-max);
+    color: $meteo-temp-max;
     font-size: 0.9rem;
     align-self: center;
     margin-top: 2px;
@@ -116,7 +127,7 @@
     grid-area: hn;
     margin-top: 2px;
     padding: 0;
-    color: var(--meteo-temp-max);
+    color: $meteo-temp-max;
     font-size: 0.8rem;
     align-self: center;
     text-align: start;
@@ -126,7 +137,7 @@
     grid-area: la;
     margin: 0;
     padding: 0;
-    color: var(--meteo-temp-min);
+    color: $meteo-temp-min;
     font-size: 0.9rem;
     align-self: center;
     text-align: end;
@@ -136,7 +147,7 @@
     grid-area: ln;
     margin: 0;
     padding: 0;
-    color: var(--meteo-temp-min);
+    color: $meteo-temp-min;
     font-size: 0.8rem;
     align-self: center;
     text-align: start;
@@ -170,7 +181,7 @@
     font-size: 0.72rem;
     vertical-align: middle;
     margin: 0;
-    color: var(--forecolor);
+    color: $forecolor;
 }
 
 .hazard {
@@ -178,7 +189,7 @@
     font-size: 0.72rem;
     vertical-align: middle;
     font-weight: bolder;
-    color: var(--meteo-temp-max);
+    color: $meteo-temp-max;
 }
 .img-hazard {
     width: 1vw;
@@ -218,7 +229,7 @@
     font-weight: bold;
     margin-left: 3px;
     vertical-align: middle;
-    color: var(--forecolor);
+    color: $forecolor;
     white-space: nowrap;
 }
 
@@ -260,11 +271,23 @@
 }
 
 .meteo-select {
-    color: var(--forecolor);
-    background-color: var(--backcolor);
+    color: $forecolor;
+    background-color: $backcolor;
     margin: 5px;
 }
 
+.select-region {
+    @extend .meteo-select;
+    grid-area: sr;
+}
+.select-subregion {
+    @extend .meteo-select;
+    grid-area: ss;
+}
+.select-city {
+    @extend .meteo-select;
+    grid-area: sc;
+}
 
 /* MOBILE
 ----------------------------------------------------------*/

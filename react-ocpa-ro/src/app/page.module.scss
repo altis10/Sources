@@ -1,3 +1,6 @@
+@import './variables.scss';
+@import './meteopage.scss';
+
 .main {
   display: flex;
   flex-direction: column;
@@ -35,6 +38,15 @@
   border-width: 2px;
   border-color: #0056b3;
   padding: 4px;
+}
+
+.table {
+  border: 1px solid #690808;
+}
+
+.table th, .table td {
+  border: 1px solid #08760f;
+  padding: 8px;
 }
 
 .description p {

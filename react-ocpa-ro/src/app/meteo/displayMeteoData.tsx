@@ -1,13 +1,13 @@
 import { MeteoDailyData } from "../models/meteo";
-// import styles from '../page.module.css';
-import styles from './displayMeteoData.module.css'
+// import styles from '../page.module.scss';
+import styles from '../page.module.scss';
 
 const DisplayDailyMeteoData = ({ meteoData }) => {
     const data: MeteoDailyData = meteoData;
     let imgSrc = "../icons/meteo/precip_" + data.forecast + ".png";
 
     return (
-        <div className={`card ${styles.dailymeteodata} ${styles[data.tempFeel]}`}>
+        <div className={`card ${styles[data.tempFeel]}`}>
             <img src={imgSrc} className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{data.date}</h5>

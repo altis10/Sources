@@ -4,7 +4,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import styles from './page.module.css';
+import styles from './page.module.scss';
 
 const MeteoBtn = () => {
 

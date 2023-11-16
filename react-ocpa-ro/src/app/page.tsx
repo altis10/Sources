@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './page.module.css';
+import styles from './page.module.scss';
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import HomeComponent from './home';
 import ProtonPlayerComponent from './protone-player-component';

@@ -4,13 +4,28 @@ import MeteoApiAddress from "../models/meteoApiAddresses";
 import useGetRequest from "../hooks/useGetRequest";
 import { MeteoData, CalendarRange, MeteoDailyData } from "../models/meteo";
 import DisplayDailyMeteoData from "../meteo/displayMeteoData";
-import styles from '../page.module.css';
+import styles from '../page.module.scss';
+
+const Weekdays = {
+    Monday: 'Monday',
+    Tuesday: 'Tuesday',
+    Wednesday: 'Wednesday',
+    Thursday: 'Thursday',
+    Friday: 'Friday',
+    Saturday: 'Saturday',
+    Sunday: 'Sunday'
+}
 
 const GetMeteoData = ({ meteoDataChanged, region, subregion, city, skip, take }) => {
     let hidden = false;
     const meteoData = useRef<MeteoData>();
+    let calendarizedData: { weekDay: number, data: MeteoDailyData }[] = [];
     let mdEx: MeteoDailyData[] = [];
+    let mwEx: MeteoDailyData[][] = [];
     const {get, loadingState} = useGetRequest(`${environment.apiUrl}${MeteoApiAddress(region, subregion, city, skip, take).meteoData}`);
+    let rowNumber = 0;
+    let colNumber = 0;
+    const weekdays = ['Sunday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Monday'];
 
     useEffect(() => {
         const fetchMeteoData = async () => {
@@ -25,32 +40,44 @@ const GetMeteoData = ({ meteoDataChanged, region, subregion, city, skip, take })
         for(const date of Object.keys(meteoData?.current?.data)) {
             const data = meteoData?.current?.data[date];
             data.date = date;
+            let elmDate = new Date(data.date);
+            let dayOfWeek = elmDate.getDay();
+            while (colNumber !== dayOfWeek) {
+                mdEx.push(undefined);
+                ++colNumber;
+            }
             mdEx.push(data);
+            ++colNumber;
+            if(colNumber === 7) {
+                mwEx.push(mdEx);
+                colNumber = 0;
+                mdEx = [];                
+            }
           }
         
         return (
             <>
-            <div className={styles.meteodata}>
-                {mdEx?.map((item) => (
-                    <DisplayDailyMeteoData key={item.date} meteoData={item} />
-                ))}
-            </div>
-
-{/*             <table className="card-text table">
-                {mdEx?.map((item) => (
-                    <>
+            <table className={`${styles.table} ${styles.td}`}>
                     <thead>
                         <tr>
-                            <th scope="col">{item.date}</th>
+                            {weekdays.map((column) => (
+                                <th key={column}>{column}</th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
-                        <td><DisplayDailyMeteoData meteoData={item} /></td>
+                        {mwEx?.map((item, count) => (
+                            <tr key={count}>
+                                {item?.map((day) => (
+                                    <td key={day?.date}>
+                                        {day?.date && <DisplayDailyMeteoData meteoData={day} />}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
                     </tbody>
-                    </>
-                ))}
             </table>
- */}            </>
+            </>
         );
     }
 };

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import useGetCities from "../hooks/useGetCities";
 import environment from "../environments/environment";
 import GeoAPIAddress from "../models/geoApiAddresses";
 import useGetRequest from "../hooks/useGetRequest";
