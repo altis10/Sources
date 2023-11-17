@@ -35,7 +35,7 @@ const MeteoComponent = () => {
         return (
             <>
                 <h5>Please select the desired city for the forecast.&nbsp;You may need to select the Region and Country/District first.</h5>
-                <GetRegions meteoDataChanged={meteoDataChanged}></GetRegions>
+                <GetRegions></GetRegions>
             </>
         );
     } else {

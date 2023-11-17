@@ -10,7 +10,7 @@ const initialLocation = {
     city: ''
 };
 
-const GetRegions = ({ meteoDataChanged }) => {
+const GetRegions = () => {
     const regions = useRef(['']);
     const [location, setLocation] = useState(initialLocation);
     const [selectedRegion, setSelectedRegion] = useState('');
