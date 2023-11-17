@@ -4,10 +4,20 @@ import GeoAPIAddress from "../models/geoApiAddresses";
 import GetSubRegions from "./getSubRegions";
 import useGetRequest from "../hooks/useGetRequest";
 
+const initialLocation = {
+    region: '',
+    subregion: '',
+    city: ''
+};
+
 const GetRegions = ({ meteoDataChanged }) => {
     const regions = useRef(['']);
+    const [location, setLocation] = useState(initialLocation);
     const [selectedRegion, setSelectedRegion] = useState('');
-    const {get, loadingState} = useGetRequest(`${environment.apiUrl}${GeoAPIAddress('', '', '').regions}`);
+    const [selectedSubRegion, setSelectedSubRegion] = useState('');
+    const [selectedCity, setSelectedCity] = useState('');
+
+    const {get, loadingState} = useGetRequest(`${environment.apiUrl}${GeoAPIAddress(initialLocation).regions}`);
 
     useEffect(() => {
         const fetchRegions = async () => {
@@ -17,13 +27,13 @@ const GetRegions = ({ meteoDataChanged }) => {
     }, [get]);
 
     const onRegionChanged = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setSelectedRegion(event.target.value);
+        setLocation({ ...location, region: event.target.value.toString(), subregion: '', city: '' });
     };
 
     return (
         <>
             <label className="label-region">Region:</label>
-            <select value={selectedRegion} onChange={onRegionChanged} className="select-region">
+            <select value={location.region} onChange={onRegionChanged} className="select-region">
                 <option value="">Select</option>
                 {regions.current?.map((region) => (
                     <option key={region} value={region}>
@@ -32,7 +42,7 @@ const GetRegions = ({ meteoDataChanged }) => {
                 ))}
             </select>
             <p>Selected region: {selectedRegion}</p>
-            <GetSubRegions meteoDataChanged={meteoDataChanged} region={selectedRegion}></GetSubRegions>
+            <GetSubRegions location={location} setLocation={setLocation}></GetSubRegions>
         </>
     );
 };

@@ -5,28 +5,27 @@ import GeoAPIAddress from "../models/geoApiAddresses";
 import GetCities from "./getCities";
 import useGetRequest from "../hooks/useGetRequest";
 
-const GetSubRegions = ({ meteoDataChanged, region }) => {
+const GetSubRegions = ({ location, setLocation }) => {
     const subRegions = useRef(['']);
-    const [selectedSubRegion, setSelectedSubRegion] = useState('');
-    const {get, loadingState} = useGetRequest(`${environment.apiUrl}${GeoAPIAddress(region, '', '').subregions}`);
+    const {get, loadingState} = useGetRequest(`${environment.apiUrl}${GeoAPIAddress(location).subregions}`);
 
     useEffect(() => {
-        const fetchRegions = async () => {
+        const fetchSubRegions = async () => {
             subRegions.current = await get();
         };
-        if (region) {
-            fetchRegions();
+        if (location.region) {
+            fetchSubRegions();
         }
-    }, [get, region]);
+    }, [get, location.region]);
 
     const onSubRegionChanged = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setSelectedSubRegion(event.target.value);
+        setLocation({ ...location, subregion: event.target.value, city: '' });
     };
 
     return (
         <>
             <label className="label-subregion">SubRegion:</label>
-            <select value={selectedSubRegion} onChange={onSubRegionChanged} className="select-subregion">
+            <select value={location.subregion} onChange={onSubRegionChanged} className="select-subregion">
                 <option value="">Select</option>
                 {subRegions.current?.map((subRegion) => (
                     <option key={subRegion} value={subRegion}>
@@ -34,8 +33,8 @@ const GetSubRegions = ({ meteoDataChanged, region }) => {
                     </option>
                 ))}
             </select>
-            <p>Selected subRegion: {selectedSubRegion}</p>
-            <GetCities meteoDataChanged={meteoDataChanged} region={region} subregion={selectedSubRegion}></GetCities>
+            <p>Selected subRegion: {location.subregion}</p>
+            <GetCities location={location} setLocation={setLocation}></GetCities>
         </>
     );
 };

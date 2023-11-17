@@ -16,14 +16,12 @@ const Weekdays = {
     Sunday: 'Sunday'
 }
 
-const GetMeteoData = ({ meteoDataChanged, region, subregion, city, skip, take }) => {
+const GetMeteoData = ({ location, skip, take }) => {
     let hidden = false;
     const meteoData = useRef<MeteoData>();
-    let calendarizedData: { weekDay: number, data: MeteoDailyData }[] = [];
     let mdEx: MeteoDailyData[] = [];
     let mwEx: MeteoDailyData[][] = [];
-    const {get, loadingState} = useGetRequest(`${environment.apiUrl}${MeteoApiAddress(region, subregion, city, skip, take).meteoData}`);
-    let rowNumber = 0;
+    const {get, loadingState} = useGetRequest(`${environment.apiUrl}${MeteoApiAddress(location, skip, take).meteoData}`);
     let colNumber = 0;
     const weekdays = ['Sunday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Monday'];
 
@@ -31,10 +29,10 @@ const GetMeteoData = ({ meteoDataChanged, region, subregion, city, skip, take })
         const fetchMeteoData = async () => {
             meteoData.current = await get();
         };
-        if (region) {
+        if (!!location.region && !!location.subregion && !!location.city) {
             fetchMeteoData();            
         }
-    }, [get, region]);
+    }, [get, location]);
 
     if (meteoData?.current?.data) {
         for(const date of Object.keys(meteoData?.current?.data)) {

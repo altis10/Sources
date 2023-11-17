@@ -1,7 +1,7 @@
-const MeteoAPIAddress = (region, subregion, city, skip, take) => {
+const MeteoAPIAddress = (location, skip, take) => {
 
     return {
-        meteoData: `/meteo/data?region=${region}&subregion=${subregion}&city=${city}&skip=${skip}&take=${take}`
+        meteoData: `/meteo/data?region=${location.region}&subregion=${location.subregion}&city=${location.city}&skip=${skip}&take=${take}`
     };
 };
 
