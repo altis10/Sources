@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import useGetSubRegions from "../hooks/useGetSubRegions";
+import { useEffect, useRef } from "react";
 import environment from "../environments/environment";
 import GeoAPIAddress from "../models/geoApiAddresses";
 import GetCities from "./getCities";
@@ -24,17 +23,17 @@ const GetSubRegions = ({ location, setLocation }) => {
 
     return (
         <>
-            <label className="label-subregion">SubRegion:</label>
-            <select value={location.subregion} onChange={onSubRegionChanged} className="select-subregion">
-                <option value="">Select</option>
-                {subRegions.current?.map((subRegion) => (
-                    <option key={subRegion} value={subRegion}>
-                        {subRegion}
-                    </option>
-                ))}
-            </select>
-            <p>Selected subRegion: {location.subregion}</p>
-            <GetCities location={location} setLocation={setLocation}></GetCities>
+        <label className="label-subregion">SubRegion:</label>
+        <select value={location.subregion} onChange={onSubRegionChanged} className="select-subregion">
+            <option value="">Select</option>
+            {subRegions.current?.map((subRegion) => (
+                <option key={subRegion} value={subRegion}>
+                    {subRegion}
+                </option>
+            ))}
+        </select>
+        <p>Selected subRegion: {location.subregion}</p>
+        <GetCities location={location} setLocation={setLocation}></GetCities>
         </>
     );
 };

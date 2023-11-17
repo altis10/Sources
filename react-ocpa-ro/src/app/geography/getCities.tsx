@@ -25,18 +25,18 @@ const GetCities = ({ location, setLocation }) => {
 
     return (
         <>
-            <label className="label-city">City:</label>
-            <select value={location.city} onChange={onCityChanged} className="select-city">
-                <option value="">Select</option>
-                {cities.current?.map((city) => (
-                    <option key={city} value={city}>
-                        {city}
-                    </option>
-                ))}
-            </select>
-            <p>Selected city: {selectedCity}</p>
-            <GetCityInfo location={location} setLocation={setLocation}></GetCityInfo>
-            <GetMeteoData location={location} skip={0} take={0} />
+        <label className="label-city">City:</label>
+        <select value={location.city} onChange={onCityChanged} className="select-city">
+            <option value="">Select</option>
+            {cities.current?.map((city) => (
+                <option key={city} value={city}>
+                    {city}
+                </option>
+            ))}
+        </select>
+        <p>Selected city: {selectedCity}</p>
+        <GetCityInfo location={location}></GetCityInfo>
+        <GetMeteoData location={location} skip={0} take={0} />
         </>
     );
 };

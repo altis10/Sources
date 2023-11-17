@@ -5,7 +5,7 @@ import useGetRequest from "../hooks/useGetRequest";
 import { City } from "../models/geography";
 import GetMeteoData from "./getMeteoData";
 
-const GetCityInfo = ({ location , setLocation }) => {
+const GetCityInfo = ({ location }) => {
     const cityInfo = useRef<City>({
         default: false,
         latitude: 0,
@@ -25,8 +25,8 @@ const GetCityInfo = ({ location , setLocation }) => {
     }, [get, location.region, location.subregion, location.city]);
 
     if (!!location.region && !!location.subregion && !!location.city) {
-    return (
-        <>
+        return (
+            <>
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">{cityInfo.current.name}</h5>
@@ -37,8 +37,8 @@ const GetCityInfo = ({ location , setLocation }) => {
                 <div className="card-footer">
                 </div>
             </div>
-        </>
-    );
+            </>
+        );
     }
 };
 

@@ -13,9 +13,6 @@ const initialLocation = {
 const GetRegions = () => {
     const regions = useRef(['']);
     const [location, setLocation] = useState(initialLocation);
-    const [selectedRegion, setSelectedRegion] = useState('');
-    const [selectedSubRegion, setSelectedSubRegion] = useState('');
-    const [selectedCity, setSelectedCity] = useState('');
 
     const {get, loadingState} = useGetRequest(`${environment.apiUrl}${GeoAPIAddress(initialLocation).regions}`);
 
@@ -32,17 +29,17 @@ const GetRegions = () => {
 
     return (
         <>
-            <label className="label-region">Region:</label>
-            <select value={location.region} onChange={onRegionChanged} className="select-region">
-                <option value="">Select</option>
-                {regions.current?.map((region) => (
-                    <option key={region} value={region}>
-                        {region}
-                    </option>
-                ))}
-            </select>
-            <p>Selected region: {selectedRegion}</p>
-            <GetSubRegions location={location} setLocation={setLocation}></GetSubRegions>
+        <label className="label-region">Region:</label>
+        <select value={location.region} onChange={onRegionChanged} className="select-region">
+            <option value="">Select</option>
+            {regions.current?.map((region) => (
+                <option key={region} value={region}>
+                    {region}
+                </option>
+            ))}
+        </select>
+        <p>Selected region: {location.region}</p>
+        <GetSubRegions location={location} setLocation={setLocation}></GetSubRegions>
         </>
     );
 };
